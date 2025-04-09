@@ -11,6 +11,15 @@ test.describe.only('Hotel Search Workflow', () => {
     await home.closeModalIfVisible(page); //The windows might show up everywhere
   });
 
+  test.afterEach(async ({ page }, testInfo) => {
+    if (testInfo.status !== testInfo.expectedStatus) {
+      await page.screenshot({
+        path: `screenshots/${testInfo.title}.png`,
+        fullPage: true,
+      });
+    }
+  });
+
   test('TC001 - Search for hotels in New York displays relevant results', async ({
     page,
   }) => {
