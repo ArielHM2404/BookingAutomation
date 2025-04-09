@@ -1,8 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
-import { testData as data } from '../utils/testData';
-import { waitForElementToBeVisible } from '../utils/utils';
-
 export class HotelDetailsPage extends BasePage {
   readonly availability: Locator;
   readonly facilities: Locator;
@@ -16,12 +13,8 @@ export class HotelDetailsPage extends BasePage {
     super(page);
 
     // Self-healing selector using fallback strategy
-
     this.availability = page.getByTestId('availability-cta');
 
-    // this.facilities = page.locator(
-    //   'a#facilities-tab-trigger[aria-selected="true"]'
-    // );
     this.facilities = page.getByTestId(
       'Property-Header-Nav-Tab-Trigger-facilities'
     );

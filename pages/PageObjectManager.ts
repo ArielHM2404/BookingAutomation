@@ -1,9 +1,7 @@
 import { Page } from '@playwright/test';
-// import { HomePage } from './HomePage';
 import { HotelSearchPage } from './HotelSearchPage';
 import { FlightSearchPage } from './FlightSearchPage';
-import { HotelDetailsPage } from './HotelDetailsPage'
-
+import { HotelDetailsPage } from './HotelDetailsPage';
 export class PageObjectManager {
   private readonly page: Page;
 
@@ -11,18 +9,9 @@ export class PageObjectManager {
   private flightSearchPage?: FlightSearchPage;
   private hotelDetailsPage?: HotelDetailsPage;
 
-
-
   constructor(page: Page) {
     this.page = page;
   }
-
-//   getHomePage(): HomePage {
-//     if (!this.homePage) {
-//       this.homePage = new HomePage(this.page);
-//     }
-//     return this.homePage;
-//   }
 
   getHotelSearchPage(): HotelSearchPage {
     if (!this.hotelSearchPage) {

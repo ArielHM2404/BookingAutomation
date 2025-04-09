@@ -9,13 +9,10 @@ test.describe('Hotel Search Workflow', () => {
 
     await home.navigate('https://www.booking.com/');
   });
-  // test.afterEach(async ({ page }) => {
-  //   await page.close();
-  // });
+
   test('TC009 - Verify hotel details page shows name, location, and rating', async ({
     page,
   }) => {
-    // const hotelSearchPage = new HotelSeachPage(page);
     const pom = new PageObjectManager(page);
     const home = pom.getHotelSearchPage();
     const hotelDetails = pom.getHotelDetailsPage();
@@ -72,7 +69,6 @@ test.describe('Hotel Search Workflow', () => {
   });
 
   test('TC010 - Verify photo gallery and navigation', async ({ page }) => {
-    // const hotelSearchPage = new HotelSeachPage(page);
     const pom = new PageObjectManager(page);
     const home = pom.getHotelSearchPage();
     const hotelDetails = pom.getHotelDetailsPage();
@@ -104,7 +100,6 @@ test.describe('Hotel Search Workflow', () => {
   });
 
   test('TC011 - Incomplete Hotel Amenities', async ({ page }) => {
-    // const hotelSearchPage = new HotelSeachPage(page);
     const pom = new PageObjectManager(page);
     const home = pom.getHotelSearchPage();
     const hotelDetails = pom.getHotelDetailsPage();

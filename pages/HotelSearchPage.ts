@@ -1,6 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
-import { testData as data } from '../utils/testData';
 import { waitForElementToBeVisible } from '../utils/utils';
 
 export class HotelSearchPage extends BasePage {

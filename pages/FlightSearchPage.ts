@@ -1,7 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
-import { testData as data } from '../utils/testData';
-import { waitForElementToBeVisible } from '../utils/utils';
 
 export class FlightSearchPage extends BasePage {
   readonly destinationInput: Locator;
@@ -24,7 +22,6 @@ export class FlightSearchPage extends BasePage {
     );
 
     this.noMatchMessage = page.locator('.c2u5p-error');
-    // this.flightResults = page.locator('#flight-results-list-wrapper') //.Fxw9
     this.flightResults = page.locator('.Fxw9');
     this.flightSearchButton = page.locator(
       'button[role="button"][aria-label="Search"]'
@@ -87,7 +84,6 @@ export class FlightSearchPage extends BasePage {
     invalidDate = false
   ) {
     await this.removeSelectedDestinationIfExists();
-    // await this.originCity.click({ force: true });
     await this.originCity.waitFor();
     await this.originCity.pressSequentially(originCity);
     await this.page.waitForLoadState('domcontentloaded'); // Waits until there are no more than 2 network connections for at least 500 ms
@@ -106,8 +102,6 @@ export class FlightSearchPage extends BasePage {
     await this.destinationCity.pressSequentially(destinationCity);
     await this.destinationCityDropdown.click();
 
-    // await this.originCity.click({ force: true });
-    // await this.page.locator('.voEJ-top-controls').click();
     if (!invalidDate) {
       await this.selectDates(
         this.page,

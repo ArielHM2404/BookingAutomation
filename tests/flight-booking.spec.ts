@@ -14,9 +14,7 @@ test.describe('Flight Booking Process', () => {
     await flight.flightButton.click();
     await page.waitForLoadState('networkidle'); // Waits until there are no more than 2 network connections for at least 500 ms
   });
-  // test.afterEach(async ({ page }) => {
-  //   await page.close();
-  // });
+
   test('TC005 - Enable return date for round-trip flights', async ({
     page,
   }) => {
