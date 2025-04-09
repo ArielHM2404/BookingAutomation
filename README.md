@@ -33,7 +33,7 @@ Key features include:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/booking-qa-automation.git
+   git clone git@github.com:ArielHM2404/BookingAutomation.git
    cd booking-qa-automation
 
    ```

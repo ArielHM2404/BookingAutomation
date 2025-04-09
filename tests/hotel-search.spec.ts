@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'; // Import the test runner
 import { testData as data } from '../utils/testData';
 import { PageObjectManager } from '../pages/PageObjectManager';
 
-test.describe.only('Hotel Search Workflow', () => {
+test.describe('Hotel Search Workflow', () => {
   test.beforeEach(async ({ page }) => {
     const pom = new PageObjectManager(page);
     const home = pom.getHotelSearchPage();

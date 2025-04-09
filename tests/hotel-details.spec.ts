@@ -10,6 +10,15 @@ test.describe('Hotel Search Workflow', () => {
     await home.navigate('https://www.booking.com/');
   });
 
+  test.afterEach(async ({ page }, testInfo) => {
+    if (testInfo.status !== testInfo.expectedStatus) {
+      await page.screenshot({
+        path: `screenshots/${testInfo.title}.png`,
+        fullPage: true,
+      });
+    }
+  });
+
   test('TC009 - Verify hotel details page shows name, location, and rating', async ({
     page,
   }) => {

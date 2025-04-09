@@ -1,6 +1,4 @@
 import { test, expect } from '@playwright/test'; // Import the test runner
-// import { HotelSearchPage } from '../pages/HotelSearchPage';
-import { testData as data } from '../utils/testData';
 import { PageObjectManager } from '../pages/PageObjectManager';
 import { verifyDepartureBeforeReturn } from '../utils/utils';
 
@@ -13,6 +11,15 @@ test.describe('Flight Booking Process', () => {
     await home.navigate('https://www.booking.com/');
     await flight.flightButton.click();
     await page.waitForLoadState('networkidle'); // Waits until there are no more than 2 network connections for at least 500 ms
+  });
+
+  test.afterEach(async ({ page }, testInfo) => {
+    if (testInfo.status !== testInfo.expectedStatus) {
+      await page.screenshot({
+        path: `screenshots/${testInfo.title}.png`,
+        fullPage: true,
+      });
+    }
   });
 
   test('TC005 - Enable return date for round-trip flights', async ({
