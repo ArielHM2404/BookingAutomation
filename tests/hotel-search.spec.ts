@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'; // Import the test runner
 import { testData as data } from '../utils/testData';
 import { PageObjectManager } from '../pages/PageObjectManager';
 
-test.describe('Hotel Search Workflow', () => {
+test.describe.only('Hotel Search Workflow', () => {
   test.beforeEach(async ({ page }) => {
     const pom = new PageObjectManager(page);
     const home = pom.getHotelSearchPage();
@@ -10,9 +10,7 @@ test.describe('Hotel Search Workflow', () => {
     await home.navigate('https://www.booking.com/');
     await home.closeModalIfVisible(page); //The windows might show up everywhere
   });
-  // test.afterEach(async ({ page }) => {
-  //   await page.close();
-  // });
+
   test('TC001 - Search for hotels in New York displays relevant results', async ({
     page,
   }) => {
@@ -82,7 +80,6 @@ test.describe('Hotel Search Workflow', () => {
     await page.waitForTimeout(5000);
 
     const prices = await home.getHotelPrices();
-    // expect(prices).toEqual([...prices].sort((a, b) => a - b));
     const isSorted = await home.verifyPricesAreSortedAscending();
     await page.waitForTimeout(2000);
 

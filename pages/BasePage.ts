@@ -13,8 +13,6 @@ export class BasePage {
   async closeModalIfVisible(page: Page) {
     await page.waitForLoadState('domcontentloaded', { timeout: 10000 });
     await this.page.waitForTimeout(4000);
-    // const closeButton = page.locator('button.bui-button--light[title="Close"]');
-    // const closeButton = page.locator('button[aria-label="Close"]');
     const closeButton = page.locator(
       'button[aria-label="Dismiss sign-in info."]'
     );

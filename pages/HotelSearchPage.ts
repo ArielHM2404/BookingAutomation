@@ -43,8 +43,6 @@ export class HotelSearchPage extends BasePage {
       'input[name="review_score=80"][aria-label^="Very Good: 8+:"]'
     );
 
-    // this.propertyCards = page.locator('div[data-testid="property-card"]');
-
     this.reviewScoreLocator = page.locator('div[data-testid="review-score"]');
 
     this.calendar = page.locator(
@@ -108,10 +106,6 @@ export class HotelSearchPage extends BasePage {
   }
 
   async inputDates(checkInDate: string, checkOutDate: string) {
-    // Wait for the calendar to be visible
-    // const calendarLocator = this.page.locator(
-    //   '[data-testid="searchbox-datepicker-calendar"]'
-    // );
     await this.inputDatesField.click();
 
     await waitForElementToBeVisible(this.page, this.calendar);
@@ -121,9 +115,6 @@ export class HotelSearchPage extends BasePage {
 
     // Select the check-out date
     await this.selectDate(checkOutDate);
-
-    //Closing calendar
-    // await this.page.getByTestId('date-display-field-start').click();
   }
 
   async filterByHotels() {
@@ -154,27 +145,6 @@ export class HotelSearchPage extends BasePage {
     }
   }
 
-  // async filterByVeryGood(): Promise<void> {
-  //   await this.closeModalIfVisible(this.page);
-
-  //   const veryGoodCheckbox = this.veryGoodFilter.first();
-
-  //   // Check if the checkbox is already checked
-  //   const isChecked = await veryGoodCheckbox.isChecked();
-  //   console.log('Is the filter Very Good checked?', isChecked);
-
-  //   if (!isChecked) {
-  //     // If not checked, click to select the checkbox
-  //     console.log('Checking the pop-up window for a second time');
-  //     await this.closeModalIfVisible(this.page);
-  //     await veryGoodCheckbox.scrollIntoViewIfNeeded();
-  //     await veryGoodCheckbox.click({ force: true });
-  //   } else {
-  //     console.log('The "Very Good: 8+" filter is already selected.');
-  //   }
-  //   await this.page.waitForLoadState('networkidle'); // Waits until there are no more than 2 network connections for at least 500 ms
-  // }
-
   get hotelFilterPill() {
     return this.hotelsFilterPill;
   }
@@ -185,9 +155,6 @@ export class HotelSearchPage extends BasePage {
 
   async filterByWonderful9Plus() {
     await this.wonderfulFilter.waitFor();
-
-    // Locate the checkbox input element by its aria-label
-    // const wonderfulCheckbox = await this.page.$('[aria-label="Wonderful: 9+: 281 properties"]');
     const wonderfulCheckbox = this.wonderfulFilter;
 
     // Check if the checkbox is already checked
@@ -241,73 +208,6 @@ export class HotelSearchPage extends BasePage {
     console.log('❌ No matching review scores found in any card.');
     return false; // No matches in any card
   }
-
-  // async checkReviewScoreInResults(
-  //   reviewScoreText1: string,
-  //   reviewScoreText2: string,
-  //   reviewScoreText3: string
-  // ): Promise<boolean> {
-  //   const propertyCards = this.page.locator('div[data-testid="property-card"]'); // Locator for all property cards
-
-  //   // Get the count of property cards and print it
-  //   const totalCards = await propertyCards.count();
-  //   console.log(`Total number of property cards: ${totalCards}`);
-
-  //   // If no cards are found, return false
-  //   if (totalCards === 0) {
-  //     console.log('No property cards found.');
-  //     return false;
-  //   }
-
-  //   // Loop through each property card and check for the dynamic review score text
-  //   for (let i = 0; i < totalCards; i++) {
-  //     const card = propertyCards.nth(i);
-
-  //     // Try to find the first review score (reviewScoreText1)
-  //     const reviewScore1 = card
-  //       .locator(
-  //         `div[data-testid="review-score"] div:has-text("${reviewScoreText1}")`
-  //       )
-  //       .first();
-
-  //     // If the first review score is visible, assert it; otherwise, try the second review score (reviewScoreText2)
-  //     try {
-  //       console.log('Checking for review score:', reviewScoreText1);
-  //       await expect(reviewScore1).toBeVisible();
-  //       return true; // If reviewScoreText1 is found, return true
-  //     } catch (error) {
-  //       // If the first review score isn't found, check for the second review score
-  //       console.log(
-  //         `Review score "${reviewScoreText1}" not found, checking for "${reviewScoreText2}"`
-  //       );
-  //       const reviewScore2 = card
-  //         .locator(
-  //           `div[data-testid="review-score"] div:has-text("${reviewScoreText2}")`
-  //         )
-  //         .first();
-  //         try {
-  //           await expect(reviewScore2).toBeVisible(); // Assert the second review score
-
-  //         } catch (error) {
-  //           // If the first review score isn't found, check for the second review score
-  //       console.log(
-  //         `Review score "${reviewScoreText2}" not found, checking for "${reviewScoreText3}"`
-  //       );
-  //       const reviewScore3 = card
-  //         .locator(
-  //           `div[data-testid="review-score"] div:has-text("${reviewScoreText3}")`
-  //         )
-  //         .first();
-
-  //         }
-  //       await expect(reviewScore3).toBeVisible(); // Assert the second review score
-  //       return true; // If reviewScoreText2 is found, return true
-  //     }
-
-  //   }
-
-  //   return false; // If neither review score was found, return false
-  // }
 
   // Function to check if "Wonderful" text is visible in each property card's review score
   async checkWonderfulInResults(): Promise<void> {
