@@ -92,7 +92,7 @@ test.describe('Hotel Search Workflow', () => {
     const isSorted = await home.verifyPricesAreSortedAscending();
     await page.waitForTimeout(2000);
 
-    // expect(isSorted).toBe(true); // Assert prices are sorted
+    expect(isSorted).toBe(true); // Assert prices are sorted
 
     await page.waitForTimeout(10000);
   });
